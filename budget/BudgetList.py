@@ -22,21 +22,23 @@ class BudgetList():
         else:
             self.overages.append(item)
             self.sum_overages+=item
+    
+    def __iter__(self):
+        self.iter_e = iter(self.expenses)
+        self.iter_o = iter(self.overages)
+        return self
+	    
 		
-	def __iter__(self):
-		iter = iter(self.expenses)
-		self.iter_o = iter(self.overages)
-		return self
-		
-	def __next__(self):
-		try
-			return __next__(self.iter_e)
-		except StopIteration as stop:
-			return __next__(self.iter_o)
+    def __next__(self):
+        try:
+                return __next__(self.iter_e)
+        except StopIteration as stop:
+                return __next__(self.iter_o)
+            
+	
 			
-		
-	def main():
-    # Using above class
+def main():
+		# Using above class
     # Set starting budget to 500
     myBudgetList = BudgetList(1200)
     # Add expenses, the last expense is 100 and that goes in overages
@@ -47,10 +49,10 @@ class BudgetList():
 
     # Test len()
     print('The count of all expenses: ' + str(len(myBudgetList)))
-	
-	for entry in myBudgetList:
-		print(entry)
 
-	if __name__ == "__main__":
-    main() 
+    #for entry in BudgetList:
+    #    print(entry)
+	
+if __name__ == "__main__":
+		main() 
  
